@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<meta name="description" content="An online journal where users can pen down their thoughts and feelings.">
+	<meta name="author" content="tosinmoses384">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <title>myDiary</title>
+  <script>
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user) window.location.assign('home.html');
+  </script>
+</head>
+<body class="before-login">
+  <main>
+    <section class="auth login-view">
+      <div class="login">
+        <h2>LOGIN</h2>
+        <form name="loginForm" onsubmit="login(event)">
+          <div class="input">
+              <svg class="icon">
+                <use xlink:href="svg/icons.svg#icon-user-check"></use>
+              </svg>
+            <input required name="username" id="login-username" type="text">
+            <label for="login-username">Username</label>
+          </div>
+          <div class="input">
+            <svg class="icon">
+              <use xlink:href="svg/icons.svg#icon-unlock"></use>
+            </svg>
+            <input required name="password" id="login-password" type="password">
+            <label for="login-password">Password</label>
+          </div>
+          <button name="submit" class="round btn">Login</button>
+        </form>
+        <p>New user? <span class="link" onclick="toggleView('signup')">Sign up here</span></p>
+      </div>
+      <div class="signup">
+        <h2>SIGN UP</h2>
+        <form onsubmit="signup(event)" name="signupForm">
+          <div class="input">
+            <svg class="icon">
+              <use xlink:href="svg/icons.svg#icon-user"></use>
+            </svg>
+            <input required name="fullName" id="signUp-fullName" type="text">
+            <label for="signUp-fullName">Full Name</label>
+          </div>
+          <div class="input">
+            <svg class="icon">
+              <use xlink:href="svg/icons.svg#icon-user-check"></use>
+            </svg>
+            <input required name="username" id="signUp-username" type="text">
+            <label for="signUp-username">Username</label>
+          </div>
+          <div class="input">
+            <svg class="icon">
+              <use xlink:href="svg/icons.svg#icon-at-sign"></use>
+            </svg>
+            <input required name="email" id="signUp-email" type="email">
+            <label for="signUp-email">Email</label>
+          </div>
+          <div class="input">
+            <svg class="icon">
+              <use xlink:href="svg/icons.svg#icon-unlock"></use>
+            </svg>
+            <input required name="password" id="signUp-password" type="password">
+            <label for="signUp-password">Password</label>
+          </div>
+          <button name="submit" class="round btn">Sign up</button>
+        </form>
+        <p>Existing user? <span class="link" onclick="toggleView('login')">Login here</span></p>
+      </div>
+    </section>
+    <section class="intro">
+      <h1>DAILY AWESOMNESS ON THE GO.<br /> SIMPLE &amp; FAST</h1>
+      <P>What stunning event<br />would you add today?</P>
+    </section>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>

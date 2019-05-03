@@ -1,0 +1,71 @@
+{
+  "name": "mydiary",
+  "version": "1.0.0",
+  "description": "An online journal where users can pen down their thoughts and feelings",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "start:watch": "nodemon server/index.js --exec babel-node",
+    "test": "nyc mocha server/tests/ --require babel-core/register -t 5000 --exit",
+    "test:watch": "nodemon --exec 'npm test'",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "build": "npm run clean && npm run build-babel",
+    "build-babel": "babel --ignore ./server/tests -d ./dist ./server -s",
+    "clean": "rm -rf dist && mkdir dist",
+    "lint": "eslint --ext .js server",
+    "lint:watch": "nodemon --exec 'eslint --ext .js server'",
+    "lint:fix": "eslint --ext .js server --fix",
+    "dbSetup": "babel-node server/migrations/dbSetup",
+    "dropTables": "babel-node server/migrations/dropTables",
+    "postinstall": "npm run build"
+  },
+  "nyc": {
+    "exclude": [
+      "UI/**.js",
+      "**/**.spec.js"
+    ]
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.18.3",
+    "cloudinary": "^1.14.0",
+    "connect-multiparty": "^2.2.0",
+    "cors": "^2.8.4",
+    "cron": "^1.3.0",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "morgan": "^1.9.1",
+    "pg": "^7.4.3",
+    "swagger-ui-express": "^3.0.10",
+    "web-push": "^3.3.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "coveralls": "^3.0.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "istanbul": "^0.4.5",
+    "moch": "0.0.1",
+    "mocha": "^5.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^12.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tosinmoses384/MyDiary.git"
+  },
+  "author": "Tosin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tosinmoses384/MyDiary/issues"
+  },
+  "homepage": "https://tosinmoses384.github.io/MyDiary/UI/"
+}
